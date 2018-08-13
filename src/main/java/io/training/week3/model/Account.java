@@ -1,7 +1,7 @@
 package io.training.week3.model;
 
 
-import io.training.week3.model.Result.OrdersResult;
+import io.training.week3.model.results.OrdersDisplay;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.List;
@@ -23,18 +23,14 @@ import javax.persistence.Table;
 @SqlResultSetMapping(
     name="accountOrdersMapping",
     classes = @ConstructorResult(
-        targetClass = OrdersResult.class,
+        targetClass = OrdersDisplay.class,
         columns = {
-            @ColumnResult(name = "id", type = BigInteger.class),
             @ColumnResult(name = "order_date", type = Timestamp.class),
             @ColumnResult(name = "order_number", type = BigInteger.class),
-            @ColumnResult(name = "total_price", type = Double.class),
-            @ColumnResult(name = "account_id", type = BigInteger.class),
-            @ColumnResult(name = "order_line_items_id", type = BigInteger.class),
-            @ColumnResult(name = "shipping_id", type = BigInteger.class)}))
+            @ColumnResult(name = "total_price", type = Double.class)}))
 @NamedNativeQuery(
     name="retrieveAccountOrders",
-    query="SELECT * from orders where account_id = ?1 order by order_date asc",
+    query="SELECT order_date, order_number, total_price from orders where account_id = ?1 group by order_number order by order_date asc",
     resultSetMapping = "accountOrdersMapping"
 )
 public class Account {

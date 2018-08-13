@@ -1,22 +1,14 @@
 package io.training.week3.model;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
     import javax.persistence.FetchType;
     import javax.persistence.GeneratedValue;
     import javax.persistence.Id;
     import javax.persistence.JoinColumn;
-    import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PostLoad;
-import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
-    import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -38,6 +30,9 @@ public class OrderLineItems {
   @JoinColumn(name="shipmentId")
   private Shipment shipment;
 
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name="ordersId")
+  private Orders orders;
 
   public OrderLineItems() {}
 
@@ -87,5 +82,17 @@ public class OrderLineItems {
 
   public void setShipment(Shipment shipment) {
     this.shipment = shipment;
+  }
+
+  public void setTotalPrice(double totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+  public Orders getOrders() {
+    return orders;
+  }
+
+  public void setOrders(Orders orders) {
+    this.orders = orders;
   }
 }

@@ -1,25 +1,57 @@
-package io.training.week3.model.Result;
+package io.training.week3.model.results;
 
-public class AddressResult {
+import java.math.BigInteger;
 
+public class OrderDetails {
+
+  private BigInteger orderNumber;
+  private Double totalPrice;
   private String street;
   private String building;
   private String city;
   private String state;
   private String zip;
   private String country;
+  private String productName;
 
-  public AddressResult(String street, String building, String city, String state,
-      String zip, String country) {
+  public OrderDetails() {}
+
+  public OrderDetails(BigInteger orderNumber, Double totalPrice, String street, String building,
+      String city, String state, String zip, String country, String productName) {
+    this.orderNumber = orderNumber;
+    this.totalPrice = totalPrice;
     this.street = street;
     this.building = building;
     this.city = city;
     this.state = state;
     this.zip = zip;
     this.country = country;
+    this.productName = productName;
   }
 
-  public AddressResult() {}
+  public BigInteger getOrderNumber() {
+    return orderNumber;
+  }
+
+  public void setOrderNumber(BigInteger orderNumber) {
+    this.orderNumber = orderNumber;
+  }
+
+  public Double getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(Double totalPrice) {
+    this.totalPrice = totalPrice;
+  }
+
+  public String getProductName() {
+    return productName;
+  }
+
+  public void setProductName(String productName) {
+    this.productName = productName;
+  }
 
   public String getStreet() {
     return street;

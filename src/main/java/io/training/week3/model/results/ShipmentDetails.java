@@ -1,19 +1,19 @@
-package io.training.week3.model.Details;
+package io.training.week3.model.results;
 
+import java.math.BigInteger;
 import java.util.Date;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ShipmentDetails {
 
-  private Long orderNumber;
+  private BigInteger orderNumber;
   private Date shipmentDate;
   private Date deliveryDate;
-//  private OrderLineItemsResult orderLineItemsResult;
   private String productName;
   private int quantity;
 
-  public ShipmentDetails(Long orderNumber, Date shipmentDate, Date deliveryDate,
+  public ShipmentDetails(BigInteger orderNumber, Date shipmentDate, Date deliveryDate,
       String productName, int quantity) {
     this.orderNumber = orderNumber;
     this.shipmentDate = shipmentDate;
@@ -24,11 +24,11 @@ public class ShipmentDetails {
 
   public ShipmentDetails() {}
 
-  public Long getOrderNumber() {
+  public BigInteger getOrderNumber() {
     return orderNumber;
   }
 
-  public void setOrderNumber(Long orderNumber) {
+  public void setOrderNumber(BigInteger orderNumber) {
     this.orderNumber = orderNumber;
   }
 

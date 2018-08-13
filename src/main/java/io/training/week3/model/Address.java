@@ -1,34 +1,12 @@
 package io.training.week3.model;
 
-import io.training.week3.model.Result.AddressResult;
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 
 @Entity
-@Table
-@SqlResultSetMapping(
-    name="orderAddressMapping",
-    classes = @ConstructorResult(
-        targetClass = AddressResult.class,
-        columns = {
-            @ColumnResult(name = "street", type = String.class),
-            @ColumnResult(name = "building", type = String.class),
-            @ColumnResult(name = "city", type = String.class),
-            @ColumnResult(name = "state", type = String.class),
-            @ColumnResult(name = "zip", type = String.class),
-            @ColumnResult(name = "country", type = String.class)}))
-@NamedNativeQuery(
-    name="retrieveShippingAddress",
-    query="select street, building, city, state, zip, country from address where id = "
-        + "(select  shipping_id from orders where account_id = ?1 and id = ?2)",
-    resultSetMapping = "orderAddressMapping"
-)
+//@Table
 public class Address {
 
   @Id
